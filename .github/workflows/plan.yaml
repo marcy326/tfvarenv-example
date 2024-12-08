@@ -32,4 +32,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           terraform init -backend-config=envs/${{ vars.env }}/${{ vars.env }}.tfbackend
-          tfvarenv plan ${{ vars.env }}
+          tfvarenv plan ${{ vars.env }} --remote
