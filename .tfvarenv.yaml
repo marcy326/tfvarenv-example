@@ -4,3 +4,8 @@ environments:
       local_file: envs/dev/dev.tfvars
       account_id: "877216539527"
       region: ap-northeast-1
+    - name: prd
+      s3_key: s3://marcy-prd-terraform/tfvarenv-example/prd.tfvars
+      local_file: envs/prd/prd.tfvars
+      account_id: "087691425202"
+      region: ap-northeast-1
