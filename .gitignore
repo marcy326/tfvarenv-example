@@ -1,0 +1,11 @@
+# In this example, *.tfvars files are tracked for demonstration purposes.
+# In a real project, always add *.tfvars to .gitignore to prevent sensitive environment-specific variables from being committed.
+!*.tfvars
+# *.tfvars
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*

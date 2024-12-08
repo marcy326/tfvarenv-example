@@ -1,0 +1,6 @@
+environments:
+    - name: dev
+      s3_key: s3://marcy-dev-terraform/tfvarenv-example/dev.tfvars
+      local_file: envs/dev/dev.tfvars
+      account_id: "877216539527"
+      region: ap-northeast-1
