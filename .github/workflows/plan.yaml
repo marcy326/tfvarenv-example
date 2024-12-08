@@ -10,7 +10,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
 
-    environment: ${{ github.ref_name == 'main' && 'prd' || 'dev' }}
+    environment: ${{ github.event.pull_request.base.ref == 'main' && 'prd' || 'dev' }}
 
     steps:
       - name: Checkout code
