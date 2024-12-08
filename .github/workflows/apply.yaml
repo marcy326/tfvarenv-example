@@ -32,11 +32,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           terraform init -backend-config=envs/${{ vars.env }}/${{ vars.env }}.tfbackend
-          tfvarenv plan ${{ vars.env }}
+          tfvarenv plan ${{ vars.env }} --remote
       
       - name: Apply Terraform
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          tfvarenv apply ${{ vars.env }}
+          tfvarenv apply ${{ vars.env }} --remote --options="-auto-approve"
