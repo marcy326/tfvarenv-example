@@ -31,7 +31,7 @@ jobs:
       - name: Setup tfvarenv
         uses: marcy326/tfvarenv@v0
         with:
-          version: v0.2.2
+          version: v0.2.4
 
       - name: Plan Terraform
         run: |

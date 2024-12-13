@@ -9,3 +9,7 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+# tfvarenv
+.tmp/
+.backups/
