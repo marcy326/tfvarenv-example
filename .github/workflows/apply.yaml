@@ -15,6 +15,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -24,19 +31,13 @@ jobs:
       - name: Setup tfvarenv
         uses: marcy326/tfvarenv@v0
         with:
-          version: v0.1.2
+          version: v0.2.2
 
       - name: Plan Terraform
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          terraform init -backend-config=envs/${{ vars.env }}/${{ vars.env }}.tfbackend
+          tfvarenv use ${{ vars.env }}
           tfvarenv plan ${{ vars.env }} --remote
       
       - name: Apply Terraform
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           tfvarenv apply ${{ vars.env }} --remote --options="-auto-approve"
