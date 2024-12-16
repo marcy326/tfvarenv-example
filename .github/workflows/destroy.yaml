@@ -1,18 +1,23 @@
-name: tfvarenv plan workflow
+name: tfvarenv destroy workflow
 
 on:
-  pull_request:
-    branches:
-      - main
-      - dev
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to destroy (dev or prd)'
+        required: true
+        type: choice
+        options:
+          - dev
+          - prd
 
 jobs:
-  validate:
+  destroy:
     runs-on: ubuntu-latest
 
-    environment: ${{ github.event.pull_request.base.ref == 'main' && 'prd' || 'dev' }}
+    environment: ${{ github.event.inputs.environment }}
     env:
-      env: ${{ github.event.pull_request.base.ref == 'main' && 'prd' || 'dev' }}
+      env: ${{ github.event.inputs.environment }}
 
     steps:
       - name: Checkout code
@@ -38,7 +43,7 @@ jobs:
       - name: Setup tfvarenv environment
         run: |
           tfvarenv use ${{ env.env }}
-
-      - name: Plan Terraform
+      
+      - name: Destroy Terraform
         run: |
-          tfvarenv plan ${{ env.env }} --remote
+          tfvarenv destroy ${{ env.env }} --auto-approve
