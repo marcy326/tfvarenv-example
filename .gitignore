@@ -13,3 +13,7 @@
 # tfvarenv
 .tmp/
 .backups/
+
+# tfvarenv
+*.tfvars
+.terraform/
