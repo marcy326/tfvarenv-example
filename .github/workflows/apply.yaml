@@ -40,4 +40,4 @@ jobs:
       
       - name: Apply Terraform
         run: |
-          tfvarenv apply ${{ vars.env }} --remote --options="-auto-approve"
+          tfvarenv apply ${{ vars.env }} --remote --auto-approve
