@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     environment: ${{ github.ref_name == 'main' && 'prd' || 'dev' }}
+    env:
+      env: ${{ github.ref_name == 'main' && 'prd' || 'dev' }}
 
     steps:
       - name: Checkout code
@@ -35,8 +37,8 @@ jobs:
 
       - name: Setup tfvarenv environment
         run: |
-          tfvarenv use ${{ env.environment }}
+          tfvarenv use ${{ env.env }}
       
       - name: Apply Terraform
         run: |
-          tfvarenv apply ${{ env.environment }} --remote --auto-approve
+          tfvarenv apply ${{ env.env }} --remote --auto-approve

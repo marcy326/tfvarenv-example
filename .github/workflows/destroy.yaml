@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     environment: ${{ github.event.inputs.environment }}
+    env:
+      env: ${{ github.event.inputs.environment }}
 
     steps:
       - name: Checkout code
@@ -40,8 +42,8 @@ jobs:
 
       - name: Setup tfvarenv environment
         run: |
-          tfvarenv use ${{ env.environment }}
+          tfvarenv use ${{ env.env }}
       
       - name: Destroy Terraform
         run: |
-          tfvarenv destroy ${{ env.environment }} --auto-approve
+          tfvarenv destroy ${{ env.env }} --auto-approve

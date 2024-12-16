@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     environment: ${{ github.event.pull_request.base.ref == 'main' && 'prd' || 'dev' }}
+    env:
+      env: ${{ github.event.pull_request.base.ref == 'main' && 'prd' || 'dev' }}
 
     steps:
       - name: Checkout code
@@ -35,8 +37,8 @@ jobs:
 
       - name: Setup tfvarenv environment
         run: |
-          tfvarenv use ${{ env.environment }}
+          tfvarenv use ${{ env.env }}
 
       - name: Plan Terraform
         run: |
-          tfvarenv plan ${{ env.environment }} --remote
+          tfvarenv plan ${{ env.env }} --remote
