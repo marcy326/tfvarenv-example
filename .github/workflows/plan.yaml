@@ -33,7 +33,10 @@ jobs:
         with:
           version: v0.3.0
 
+      - name: Setup tfvarenv environment
+        run: |
+          tfvarenv use ${{ env.environment }}
+
       - name: Plan Terraform
         run: |
-          tfvarenv use ${{ vars.env }}
-          tfvarenv plan ${{ vars.env }} --remote
+          tfvarenv plan ${{ env.environment }} --remote
