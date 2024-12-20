@@ -1,3 +1,0 @@
-bucket  = "marcy-dev-terraform"
-key     = "tfvarenv-example/dev.tfstate"
-region  = "ap-northeast-1"

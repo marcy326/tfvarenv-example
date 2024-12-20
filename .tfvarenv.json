@@ -22,7 +22,9 @@
         "require_approval": false
       },
       "backend": {
-        "config_path": "envs/dev/dev.tfbackend"
+        "bucket": "marcy-dev-terraform",
+        "key": "tfvarenv-example/dev.tfstate",
+        "region": "ap-northeast-1"
       }
     },
     "prd": {
@@ -45,7 +47,9 @@
         "require_approval": true
       },
       "backend": {
-        "config_path": "envs/prd/prd.tfbackend"
+        "bucket": "marcy-prd-terraform",
+        "key": "tfvarenv-example/prd.tfstate",
+        "region": "ap-northeast-1"
       }
     }
   }

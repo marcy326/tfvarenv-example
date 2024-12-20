@@ -1,3 +1,0 @@
-bucket  = "marcy-prd-terraform"
-key     = "tfvarenv-example/prd.tfstate"
-region  = "ap-northeast-1"
